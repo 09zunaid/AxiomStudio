@@ -3,17 +3,18 @@
 
 import { BrokenGrid } from "@/components/layout/BrokenGrid";
 import Link from "next/link";
+import Image from "next/image";
 
 // Dummy data for portfolio projects
 const projects = [
-    { id: "lumina", title: "Lumina", category: "Brand Identity", year: "2024" },
-    { id: "void", title: "Void", category: "Editorial Design", year: "2023" },
-    { id: "apex", title: "Apex", category: "Digital Experience", year: "2024" },
-    { id: "mono", title: "Mono", category: "Packaging", year: "2023" },
-    { id: "spectra", title: "Spectra", category: "Art Direction", year: "2024" },
-    { id: "helix", title: "Helix", category: "Motion", year: "2025" },
-    { id: "brut", title: "Brut", category: "Typography", year: "2023" },
-    { id: "echo", title: "Echo", category: "Spatial Design", year: "2024" },
+    { id: "lumina", title: "Lumina", category: "Brand Identity", year: "2024", image: "/images/work/lumina.png" },
+    { id: "void", title: "Void", category: "Editorial Design", year: "2023", image: "/images/work/void.png" },
+    { id: "apex", title: "Apex", category: "Digital Experience", year: "2024", image: "/images/work/apex.png" },
+    { id: "mono", title: "Mono", category: "Packaging", year: "2023", image: "/images/work/mono.png" },
+    { id: "spectra", title: "Spectra", category: "Art Direction", year: "2024", image: "/images/work/spectra.svg" },
+    { id: "helix", title: "Helix", category: "Motion", year: "2025", image: "/images/work/helix.svg" },
+    { id: "brut", title: "Brut", category: "Typography", year: "2023", image: "/images/work/brut.svg" },
+    { id: "echo", title: "Echo", category: "Spatial Design", year: "2024", image: "/images/work/echo.svg" },
 ];
 
 export default function WorkPage() {
@@ -36,19 +37,26 @@ export default function WorkPage() {
                         key={p.id}
                         className="block group w-full h-full min-h-[40vh] md:min-h-[50vh] bg-axiom-2 relative overflow-hidden border border-axiom-2 hover:border-axiom-9 transition-colors duration-500"
                     >
-                        {/* Image Placeholder - In real app, would be <Image> */}
-                        <div className="absolute inset-0 bg-axiom-2 group-hover:scale-105 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-axiom-2 group-hover:scale-105 transition-transform duration-700">
+                            <Image
+                                src={p.image}
+                                alt={p.title}
+                                fill
+                                className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                        </div>
 
                         {/* Number */}
-                        <span className="absolute top-4 right-4 font-mono text-xs opacity-50 mix-blend-difference">
+                        <span className="absolute top-4 right-4 font-mono text-xs opacity-50 mix-blend-difference z-10 text-white">
                             0{i + 1}
                         </span>
 
-                        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-axiom-1/80 to-transparent">
+                        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent z-10 text-white">
                             <h2 className="text-3xl md:text-5xl font-serif tracking-tight group-hover:italic transition-all duration-300">
                                 {p.title}
                             </h2>
-                            <div className="flex justify-between items-center mt-2 border-t border-axiom-5/30 pt-2 opacity-70">
+                            <div className="flex justify-between items-center mt-2 border-t border-white/30 pt-2 opacity-70">
                                 <p className="text-xs font-mono uppercase tracking-widest">{p.category}</p>
                                 <p className="text-xs font-mono">{p.year}</p>
                             </div>
